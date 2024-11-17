@@ -115,18 +115,13 @@ CREATE TABLE Interactiuni_Client_Angajat (
 CREATE TABLE Users (
     id_user INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,  -- 255 pentru hash-ul parolei
+    password VARCHAR(255) NOT NULL,
     id_angajat INT,
     id_client INT,
     role ENUM('ADMIN', 'MANAGER', 'EMPLOYEE', 'CLIENT') NOT NULL,
     last_login DATETIME,
     account_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     account_active BOOLEAN DEFAULT true,
-    reset_token VARCHAR(100),
-    reset_token_expiry DATETIME,
-    failed_login_attempts INT DEFAULT 0,
-    account_locked BOOLEAN DEFAULT false,
-    login_history TEXT,
     FOREIGN KEY (id_angajat) REFERENCES Angajati(id_angajat),
     FOREIGN KEY (id_client) REFERENCES Clienti(id_client),
     CONSTRAINT check_single_role CHECK (
