@@ -1,12 +1,34 @@
 import java.awt.*;
 import javax.swing.*;
-
+import java.awt.CardLayout;
 
 public class GUIForm extends javax.swing.JFrame {
 
+    private CardLayout cardLayout;
+    
     public GUIForm() {
         initComponents();
         initLoginPanel();
+        setupCardLayout();
+    }
+    
+    private void setupCardLayout() {
+        // Inițializăm CardLayout și panoul principal
+        cardLayout = new CardLayout();
+        mainPanel = new JPanel(cardLayout);
+        
+        // Adăugăm panourile în mainPanel cu nume specifice
+        mainPanel.add(loginPanel, "login");
+        mainPanel.add(registerPanel, "register");
+        
+        // Setăm mainPanel ca și conținut principal al frame-ului
+        setContentPane(mainPanel);
+        
+        // Afișăm inițial panoul de login
+        cardLayout.show(mainPanel, "login");
+        
+        // Ajustăm dimensiunea ferestrei
+        pack();
     }
     
     public void initLoginPanel(){
@@ -15,8 +37,6 @@ public class GUIForm extends javax.swing.JFrame {
         titleLabel.setVerticalAlignment(SwingConstants.CENTER);
         loginPasswordField.setForeground(Color.LIGHT_GRAY);
         loginPanel.add(titleLabel);
-        
-        
     }
 
     private void clearField(JTextField text) {
@@ -27,6 +47,7 @@ public class GUIForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        mainPanel = new javax.swing.JPanel();
         loginPanel = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
         loginUsernameTextField = new javax.swing.JTextField();
@@ -117,7 +138,7 @@ public class GUIForm extends javax.swing.JFrame {
                 .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loginButton)
                     .addComponent(registerButton))
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addContainerGap(184, Short.MAX_VALUE))
         );
 
         loginPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {loginPasswordField, loginUsernameTextField});
@@ -144,24 +165,55 @@ public class GUIForm extends javax.swing.JFrame {
                 .addContainerGap(544, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(loginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
+        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+        mainPanel.setLayout(mainPanelLayout);
+        mainPanelLayout.setHorizontalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 812, Short.MAX_VALUE)
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mainPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(loginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(registerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
-        layout.setVerticalGroup(
+        mainPanelLayout.setVerticalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mainPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(loginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mainPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(registerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(loginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(registerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -215,7 +267,7 @@ public class GUIForm extends javax.swing.JFrame {
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        
+        cardLayout.show(mainPanel, "register");
     }//GEN-LAST:event_registerButtonActionPerformed
 
     public static void main(String args[]) {
@@ -234,6 +286,7 @@ public class GUIForm extends javax.swing.JFrame {
     private javax.swing.JPanel loginPanel;
     private javax.swing.JPasswordField loginPasswordField;
     private javax.swing.JTextField loginUsernameTextField;
+    private javax.swing.JPanel mainPanel;
     private javax.swing.JButton registerButton;
     private javax.swing.JLabel registerLabel;
     private javax.swing.JPanel registerPanel;
